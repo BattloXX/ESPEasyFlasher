@@ -65,25 +65,6 @@ namespace FlashESP8266
                     // Start the process.
                     myProcess = Process.Start(cmd, arg);
 
-                    // Display the process statistics until
-                    // the user closes the program.
-                    do
-                    {
-                        if (!myProcess.HasExited)
-                        {
-                            // Refresh the current process property values.
-                            myProcess.Refresh();
-
-                            if (myProcess.Responding)
-                            {
-                                
-                            }
-                            else
-                            {
-                               
-                            }
-                        }
-                    }
                     while (!myProcess.WaitForExit(1000));
 
                     if (myProcess.ExitCode != 0)
