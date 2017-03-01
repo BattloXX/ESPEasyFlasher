@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
+
 using System.Windows.Forms;
 
 namespace FlashESP8266
@@ -18,24 +13,26 @@ namespace FlashESP8266
         {
             InitializeComponent();
 
+            //Check Com Ports
             string[] ports = SerialPort.GetPortNames();
+            //Check Firmware files
+            string[] fileArray = Directory.GetFiles(@".", "*.bin");
+
+            //Fill out the Combobox with serial Ports
             foreach (var port in ports)
             {
                 cbx_serial.Items.Add(port);
                 cbx_serial.Text = port;
             }
 
-            string[] fileArray = Directory.GetFiles(@".", "*.bin");
+            //Fill out the Combobox with Firmware Files
             foreach (var files in fileArray)
             {
-                //files.Replace(@".\", "");
-                cbx_firmware.Items.Add(files);
+               cbx_firmware.Items.Add(files);
             }
 
             cbx_firmware.DropDownStyle = ComboBoxStyle.DropDownList;
             cbx_serial.DropDownStyle = ComboBoxStyle.DropDownList;
-
-
         }
 
         private void bttn_flash_Click(object sender, EventArgs e)
@@ -55,8 +52,9 @@ namespace FlashESP8266
             if (firmware != "" & serial != "")
             {
 
-                string arg = "-vv -cd nodemcu -cb 115200 -cp " + serial + " -ca 0x00000 -cf " + firmware;
                 string cmd = "esptool.exe";
+                //Flash Arguments for the esptool.exe. Change when needed.
+                string arg = "-vv -cd nodemcu -cb 115200 -cp " + serial + " -ca 0x00000 -cf " + firmware;
 
                 Process myProcess = null;
 
@@ -69,14 +67,12 @@ namespace FlashESP8266
 
                     if (myProcess.ExitCode != 0)
                     {
-                        MessageBox.Show("Flash Failed");
+                        MessageBox.Show("Flash Failed, are the Settings correct?");
                     }
                     else
                     {
                         MessageBox.Show("Flash Complete");
-
                     }
-
 
                 }
                 finally
@@ -86,9 +82,7 @@ namespace FlashESP8266
                         myProcess.Close();
                     }
                 }
-
             }
-
         }
     }
 }
