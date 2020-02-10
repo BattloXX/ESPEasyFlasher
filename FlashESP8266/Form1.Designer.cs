@@ -33,11 +33,13 @@
             this.cbx_serial = new System.Windows.Forms.ComboBox();
             this.lbl_firmware = new System.Windows.Forms.Label();
             this.cbx_firmware = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.speed = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // bttn_flash
             // 
-            this.bttn_flash.Location = new System.Drawing.Point(302, 140);
+            this.bttn_flash.Location = new System.Drawing.Point(302, 174);
             this.bttn_flash.Name = "bttn_flash";
             this.bttn_flash.Size = new System.Drawing.Size(75, 23);
             this.bttn_flash.TabIndex = 0;
@@ -57,15 +59,15 @@
             // cbx_serial
             // 
             this.cbx_serial.FormattingEnabled = true;
-            this.cbx_serial.Location = new System.Drawing.Point(88, 34);
+            this.cbx_serial.Location = new System.Drawing.Point(98, 34);
             this.cbx_serial.Name = "cbx_serial";
-            this.cbx_serial.Size = new System.Drawing.Size(289, 21);
+            this.cbx_serial.Size = new System.Drawing.Size(279, 21);
             this.cbx_serial.TabIndex = 2;
             // 
             // lbl_firmware
             // 
             this.lbl_firmware.AutoSize = true;
-            this.lbl_firmware.Location = new System.Drawing.Point(13, 74);
+            this.lbl_firmware.Location = new System.Drawing.Point(12, 81);
             this.lbl_firmware.Name = "lbl_firmware";
             this.lbl_firmware.Size = new System.Drawing.Size(49, 13);
             this.lbl_firmware.TabIndex = 3;
@@ -74,16 +76,39 @@
             // cbx_firmware
             // 
             this.cbx_firmware.FormattingEnabled = true;
-            this.cbx_firmware.Location = new System.Drawing.Point(88, 74);
+            this.cbx_firmware.Location = new System.Drawing.Point(98, 78);
             this.cbx_firmware.Name = "cbx_firmware";
-            this.cbx_firmware.Size = new System.Drawing.Size(289, 21);
+            this.cbx_firmware.Size = new System.Drawing.Size(279, 21);
             this.cbx_firmware.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 122);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Upload speed";
+            // 
+            // speed
+            // 
+            this.speed.FormattingEnabled = true;
+            this.speed.Items.AddRange(new object[] {
+                "4800","9600","14400","19200","38400","57600","115200","230400","460800","921600"
+            });
+            this.speed.SelectedItem = "115200";
+            this.speed.Location = new System.Drawing.Point(98, 122);
+            this.speed.Name = "speed";
+            this.speed.Size = new System.Drawing.Size(121, 21);
+            this.speed.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(395, 175);
+            this.ClientSize = new System.Drawing.Size(398, 209);
+            this.Controls.Add(this.speed);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cbx_firmware);
             this.Controls.Add(this.lbl_firmware);
             this.Controls.Add(this.cbx_serial);
@@ -103,6 +128,8 @@
         private System.Windows.Forms.ComboBox cbx_serial;
         private System.Windows.Forms.Label lbl_firmware;
         private System.Windows.Forms.ComboBox cbx_firmware;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox speed;
     }
 }
 

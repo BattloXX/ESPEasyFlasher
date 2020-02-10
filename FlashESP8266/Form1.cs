@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
-
+using System.Management;
 using System.Windows.Forms;
 
 namespace FlashESP8266
@@ -12,7 +12,7 @@ namespace FlashESP8266
         public Form1()
         {
             InitializeComponent();
-
+  
             //Check Com Ports
             string[] ports = SerialPort.GetPortNames();
             //Check Firmware files
@@ -33,6 +33,7 @@ namespace FlashESP8266
 
             cbx_firmware.DropDownStyle = ComboBoxStyle.DropDownList;
             cbx_serial.DropDownStyle = ComboBoxStyle.DropDownList;
+            speed.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void bttn_flash_Click(object sender, EventArgs e)
@@ -54,7 +55,7 @@ namespace FlashESP8266
 
                 string cmd = "esptool.exe";
                 //Flash Arguments for the esptool.exe. Change when needed.
-                string arg = "-vv -cd nodemcu -cb 115200 -cp " + serial + " -ca 0x00000 -cf " + firmware;
+                string arg = "--port " + serial + " --baud "+speed.Text+" write_flash 0x0 " + firmware;
 
                 Process myProcess = null;
 
@@ -67,7 +68,7 @@ namespace FlashESP8266
 
                     if (myProcess.ExitCode != 0)
                     {
-                        MessageBox.Show("Flash Failed, are the Settings correct?");
+                        MessageBox.Show("Flash Failed with arg" +arg+ " are the Settings correct?");
                     }
                     else
                     {
